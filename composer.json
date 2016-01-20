@@ -1,0 +1,23 @@
+{
+  "name": "paperpixel/wpmodules",
+  "type": "library",
+  "description": "Split Wordpress functions.php file into small, readable modules",
+  "keywords": ["wordpress"],
+  "homepage": "http://github.com/PaperpixelStudio/WPModules",
+  "license" : "BSD",
+  "authors" : [
+    {
+      "name": "Jonathan Berger",
+      "email": "jonathan@paperpixel.net",
+      "homepage": "http://www.paperpixel.net"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "WPModules\\": "src/"
+    }
+  }
+}
