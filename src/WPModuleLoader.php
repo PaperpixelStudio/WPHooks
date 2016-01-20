@@ -2,11 +2,11 @@
 
 namespace WPModules;
 
-class WPModuleFactory {
-	public static function add($module) {
+class WPModuleLoader {
+	public static function register($module) {
 		if(is_array($module)) {
 			foreach($module as $item) {
-				WPModuleFactory::add($item);
+				WPModuleLoader::register($item);
 			}
 		} else if($module instanceof WPModule) {
 			$module->register();

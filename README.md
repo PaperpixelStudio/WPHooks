@@ -54,9 +54,9 @@ $example_module->register();
 
 
 
-### Easier module creation with WPModuleFactory
+### Easier module creation with WPModuleLoader
 
-You can use `WPModuleFactory` to instantiate your modules easily :
+You can use `WPModuleLoader` to instantiate your modules easily :
 
 ```php
 // functions.php
@@ -67,10 +67,10 @@ include 'Module2.php';
 include 'Module3.php';
 
 // You can pass a WPModule instance
-WPModules\WPModuleFactory::add(new ExampleModule());
+WPModules\WPModuleLoader::register(new ExampleModule());
 
 // Or an array of WPModule instances
-WPModules\WPModuleFactory::add([
+WPModules\WPModuleLoader::register([
    new Module1(),
    new Module2(),
    new Module3(),
@@ -129,9 +129,9 @@ Finally, in `functions.php`, instantiate your module :
 ```php
 // functions.php
 
-// Without WPModuleFactory
+// Without WPModuleLoader
 $example_actions = new Actions\ExampleAction();
 
-// With WPModuleFactory
-WPModules\WPModuleFactory::add(new Actions\ExampleAction());
+// With WPModuleLoader
+WPModules\WPModuleLoader::register(new Actions\ExampleAction());
 ```
