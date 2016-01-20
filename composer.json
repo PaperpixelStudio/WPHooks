@@ -1,5 +1,5 @@
 {
-  "name": "paperpixel/wphooks",
+  "name": "paperpixel/wp-hooks",
   "type": "library",
   "description": "Split Wordpress functions.php file into small, readable hooks",
   "keywords": ["wordpress"],
