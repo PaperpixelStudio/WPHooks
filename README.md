@@ -2,6 +2,11 @@
 
 Split Wordpress functions.php file into small, readable modules.
 
+## Requirement
+
+Your Wordpress files and plugins should be managed by composer.
+See [Bedrock boilerplate Wordpress structure](https://github.com/roots/bedrock) to get started.
+
 ## Installation
 
 Install with Composer: `Composer require paperpixel/wpmodules`
