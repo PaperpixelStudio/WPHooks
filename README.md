@@ -33,7 +33,7 @@ class ExampleModule extends WPModule {
 ```
 
 _Note: we take advantage of Composer autoload
-feature to import class by namespace with the keyword `use`.
+feature to import class by namespace with the keyword `use`._
 
 ### Using the module
 
