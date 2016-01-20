@@ -1,13 +1,13 @@
 <?php
 
-namespace WPModules;
+namespace WPHooks;
 
 /**
  * Created by Paperpixel
  * Inspired by Wordpress Plugin Boilerplate
  * https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/blob/master/plugin-name/includes/class-plugin-name-loader.php
  */
-abstract class WPModule {
+abstract class WPHook {
 	/**
 	 * Obligatory method where you register actions or filters.
 	 *

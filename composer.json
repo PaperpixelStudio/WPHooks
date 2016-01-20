@@ -1,9 +1,9 @@
 {
-  "name": "paperpixel/wpmodules",
+  "name": "paperpixel/wphooks",
   "type": "library",
-  "description": "Split Wordpress functions.php file into small, readable modules",
+  "description": "Split Wordpress functions.php file into small, readable hooks",
   "keywords": ["wordpress"],
-  "homepage": "http://github.com/PaperpixelStudio/WPModules",
+  "homepage": "http://github.com/PaperpixelStudio/WPHooks",
   "license" : "BSD",
   "authors" : [
     {
@@ -17,7 +17,7 @@
   },
   "autoload": {
     "psr-4": {
-      "WPModules\\": "src/"
+      "WPHooks\\": "src/"
     }
   }
 }

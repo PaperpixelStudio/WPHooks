@@ -1,6 +1,6 @@
-# WPModules
+# WPHooks
 
-Split Wordpress functions.php file into small, readable modules.
+Split Wordpress functions.php file into small, readable hooks.
 
 ## Requirement
 
@@ -9,18 +9,18 @@ See [Bedrock boilerplate Wordpress structure](https://github.com/roots/bedrock) 
 
 ## Installation
 
-Install with Composer: `Composer require paperpixel/wpmodules`
+Install with Composer: `composer require paperpixel/wphooks`
 
 ## Usage
 
-### Creating a module
+### Creating a hook
 
-Create a module by extending `WPModule` class :
+Create a hook by extending `WPHook` class :
 
 ```php
-use WPModules\WPModule;
+use WPHooks\WPHook;
 
-class ExampleModule extends WPModule {
+class ExampleHook extends WPHook {
     // Mandatory method, used to register actions and filters with Wordpress.
     public function register() {
         $this->add_action('init', 'my_action_hook');
@@ -40,40 +40,40 @@ class ExampleModule extends WPModule {
 _Note: we take advantage of Composer autoload
 feature to import class by namespace with the keyword `use`._
 
-### Using the module
+### Using the hook
 
-In your functions.php class, instantiate `ExampleModule` and call `register()` method.
+In your functions.php class, instantiate `ExampleHook` and call `register()` method.
 
 ```php
 // functions.php
-include 'ExampleModule.php';
+include 'ExampleHook.php';
 
-$example_module = new ExampleModule();
-$example_module->register();
+$example_hook = new ExampleHook();
+$example_hook->register();
 ```
 
 
 
-### Easier module creation with WPModuleLoader
+### Easier hook creation with WPHookLoader
 
-You can use `WPModuleLoader` to instantiate your modules easily :
+You can use `WPHookLoader` to instantiate your hooks easily :
 
 ```php
 // functions.php
 
-include 'ExampleModule.php';
-include 'Module1.php';
-include 'Module2.php';
-include 'Module3.php';
+include 'ExampleHook.php';
+include 'Hook1.php';
+include 'Hook2.php';
+include 'Hook3.php';
 
-// You can pass a WPModule instance
-WPModules\WPModuleLoader::register(new ExampleModule());
+// You can pass a WPHook instance
+WPHooks\WPHookLoader::register(new ExampleHook());
 
-// Or an array of WPModule instances
-WPModules\WPModuleLoader::register([
-   new Module1(),
-   new Module2(),
-   new Module3(),
+// Or an array of WPHook instances
+WPHooks\WPHookLoader::register([
+   new Hook1(),
+   new Hook2(),
+   new Hook3(),
    ...
 ]);
 ```
@@ -81,11 +81,11 @@ WPModules\WPModuleLoader::register([
 ## Autoloading
 
 We can leverage Composer's `ClassLoader` feature in our theme, so that we
-don't have to require each module in `functions.php`.
+don't have to require each hook in `functions.php`.
 
 Considering this theme structure :
 ```
-modules/
+hooks/
     actions/
         ExampleAction.php
     filters/
@@ -104,34 +104,34 @@ use Composer\Autoload\ClassLoader;
 $loader = new ClassLoader();
 $loader-> register();
 
-$loader->addPsr4('Actions\\', __DIR__ . '/modules/actions');
-$loader->addPsr4('Filters\\', __DIR__ . '/modules/filters');
+$loader->addPsr4('Hooks\\Actions\\', __DIR__ . '/hooks/actions');
+$loader->addPsr4('Hooks\\Filters\\', __DIR__ . '/hooks/filters');
 ```
 
-In your Module class, add a namespace accordingly to `__autoload.php` :
+In your Hook class, add a namespace accordingly to `__autoload.php` :
 
 ```php
-// modules/actions/ExampleAction.php
+// hooks/actions/ExampleAction.php
 
-namespace Actions;
+namespace Hooks\Actions;
 
-use WPModules\WPModule;
+use WPHooks\WPHook;
 
-class ExampleAction extends WPModule {
+class ExampleAction extends WPHook {
     function register() {
         ...
     }
 }
 ```
 
-Finally, in `functions.php`, instantiate your module :
+Finally, in `functions.php`, instantiate your hook :
 
 ```php
 // functions.php
 
-// Without WPModuleLoader
+// Without WPHookLoader
 $example_actions = new Actions\ExampleAction();
 
-// With WPModuleLoader
-WPModules\WPModuleLoader::register(new Actions\ExampleAction());
+// With WPHookLoader
+WPHooks\WPHookLoader::register(new Actions\ExampleAction());
 ```
